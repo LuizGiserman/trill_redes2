@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>LoRa - Redes de Computadores I</title>
+  <meta name="description" content="website description" />
+  <meta charset="UTF-8"/>
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1><a href="index.html"><span class="logo_colour">L</span>o<span class="logo_colour">R</span>a</a></h1>
+        </div>
+        <div id="logoPadding">
+        <h2>Long Range</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="introducao.html">Introdução</a></li>
+          <li><a href="arquitetura.html">Arquitetura</a></li>
+          <li><a href="dispositivos.html">Dispositivos Finais</a></li>
+          <li><a href="modulacao.html">Modulação LoRa</a></li>
+          <li class="selected"><a href="outras_tecno.html">Outras Tecnologias</a></li>
+          <li><a href="conclusoes.html">Conclusões</a></li>
+          <li><a href="bibliografia.html">Bibliografia</a></li>
+          <li><a href="perguntas.html">Perguntas</a></li>
+
+        </ul>
+      </div>
+    </div>
+    <div id="site_content">
+
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Outras Tecnologias LPWA e a LoRa</h2>
+        <br>
+        <h1>NB-IoT</h1>
+        <p>O  organismo  de  normas  internacionais  3GPP  concluiu  a  normatização  do  NB-IoT  (Narrow Band IoT) em meados de 2016.  Este padrão usa frequências licenciadas - as mesmas usadas por algumas frequências do 4G - permitindo que algumas estações sejam atualizadas e compartilhem sua infraestrutura.</p>
+        <p>Essa tecnologia relativamente nova foi desenvolvida da maneira mais simples possível, visando reduzir tanto o custo de aplicação quanto o consumo da bateria.  Essa característica acaba contradizendo alguns dos princípios de LTE, mas apesar disso ela assim foi integrada nesse padrão. Além disso, NB-IoT também é conhecida por sua alta densidade de conexão e pela sua excelente cobertura.</p>
+        <p>Mesmo utilizando as configurações da LTE padrão, a NB-IoT limita a largura da sua banda a uma faixa estreita de 200kHz (daí o nome da tecnologia).  Ela utiliza dois tipos de modulação
+diferentes:  para comunicações do tipo downlink, ela usa OFDM; para comunicação uplink, ela usa
+SC-FDMA.</p>
+        <p>Analisando  conjuntamente  as  tecnologias  NB-IoT  e  LoRa,  podemos  perceber  tanto  semelhanças  quanto  diferenças.   Para  facilitar  a  comparação  entre  essas  duas,  vamos  focar  nas  divergências entre elas.</p>
+        <p>Primeiramente,  podemos  perceber  que  dispositivos  NB-IoT  tendem  a  ter  um  consumo  de bateria maior do que dispositivos LoRa.  Isso acontece pois a sincronização desse aparelho consome uma quantia adicional de energia, e também porque as modulações OFDM e FDMA precisam de uma corrente de pico maior para o transmissor linear.  Essas características, contudo, permitem que a tecnologia NB-IoT tenha uma latência menor, além de uma maior vazão.</p>
+        <p>Com relação ao alcance das redes, pode-se perceber que LoRa apresenta uma maior cobertura em relação a NB-IoT. Essa segunda fica restrita a localidades que fiquem próximas de uma estação LTE, enquanto uma única estação LoRa pode cobrir, por exemplo, uma cidade inteira.</p>
+        <p>Observando agora a qualidade dessas duas tecnologias, pode se dizer que o uso de frequências licenciadas  faz  com  a  NB-IoT  tenha  um  melhor  QoS, além de mais segurança.  Contudo,  isso  faz  também  com  que  essa tecnologia seja bem mais cara que a LoRa. [2]</p>
+        <p>Em suma, não existe uma tecnologia LPWA ideal, mas a tecnologia que melhor se aplica a
+uma determinada situação.  Cada uma dessas aplicações apresenta características específicas que a
+tornam mais adequadas a um determinado dispostitivo.  Tanto LoRa quanto NB-IoT têm um importante papel dentro do mercado IoT, sendo que LoRa foca majoritariamente em aplicações de baixo custo, enquanto NB-IoT é executada em aplicações que requerem alta qualidade e uma baixa latência.</p>
+        <br>
+        <h1>Sigfox</h1>
+        <p>A rede de comunicação Sigfox é uma operadora francesa fundada em 2009.  Ela  ́e uma tecnologia LPWA e, assim como a LoRa, não utiliza uma faixa de frequências licenciada.  O principal
+foco dessa operadora é a construção de redes sem fio para conectar dispositivos de baixa potência que precisam permanecer constantemente ligados.</p>
+        <p>Uma das principais características da Sigfox é o uso de uma modulação Ultra Narrow Band,
+operando  em  apenas  200kHz  da  faixa  não-licenciada  de  frequências.   Além  disso,  o  protocolo utilizado por essa tecnologia não suporta mensagens pesadas, limitando o tamanho do conteúdo transmitido.   Essas  duas  características  fazem  com  que  dispositivos  com  esse  tipo  de  tecnologia apresentem  um  baixo  consumo  de  energia,  assim  como  um  baixo  custo  de  conectividade  e  do modem Sigfox.</p>
+        <p>A Sigfox também promove uma comunicação bidirecional, tendo um uplink com pacotes de até 140 mensagens de 12 bytes por dia, e um downlink com pacotes de até 4 mensagens de 8 bytes por dia.  Como era de se esperar, a quantidade de dados transmitidos é pequena devido à sua modulação. [13]</p>
+        <p>Repetindo  agora  a  mesma  análise  que  fizemos  com  a  tecnologia  NB-IoT,  vamos  comparar LoRa e Sigfox, focando nas diferençaas entre essas redes.</p>
+        <p>A baixa latência da tecnologia Sigfox, semelhante à baixa latência dos dispositivos LoRa Classe A, torna a tecnologia francesa a ideal quando se trabalha com aplicativos que são insensíveis à latência ou não contém uma grande quantidade de dados a ser enviado.  Contudo, os outros tipos de dispositivos LoRa – principalmente a Classe C – conseguem lidar com latências bidirecionais às custas do aumento do consumo de energia, tornando essa rede mais abrangente.</p>
+        <p>Compensando a pequena quantidade de dados que essa rede suporta, a Sigfox apresenta um
+alcance bem maior do que os das tecnologias LoRa.  Fazeno uma comparação um tanto imprecisa,
+enquanto apenas uma estação Sigfox é capaz de cobrir uma grande cidade, seriam necessárias mais
+ou menos três estações LoRa para fazer o mesmo. [11]</p>
+        <p>Vale  ressaltar  que,  mais  uma  vez,  não  exite  uma  tecnologia  melhor  do  que  a  outra,  mas  a tecnologia  adequada  para  uma  dada  situação.   Inúmeros  fatores  podem  influenciar  na  escolha de  uma  rede,  seja  o  tamanho  do  conteúdo,  a  distância  a  ser  percorrida  ou  a  segurança  que  ele proporciona. No fim das contas, todas as tecnologias LPWA se mostram extremamente importantes no contexto atual, cada uma a seu modo.</p>
+        <br>
+      </div>
+    </div>
+    <div id="footer">
+      Copyright &copy; textured_blue | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Free CSS Templates</a>
+    </div>
+  </div>
+</body>
+</html>

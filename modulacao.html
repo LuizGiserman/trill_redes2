@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>LoRa - Redes de Computadores I</title>
+  <meta name="description" content="website description" />
+  <meta charset="UTF-8"/>
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html"><span class="logo_colour">L</span>o<span class="logo_colour">R</span>a</a></h1>
+        </div>
+        <div id="logoPadding">
+        <h2>Long Range</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="introducao.html">Introdução</a></li>
+          <li><a href="arquitetura.html">Arquitetura</a></li>
+          <li><a href="dispositivos.html">Dispositivos Finais</a></li>
+          <li class="selected"><a href="modulacao.html">Modulação LoRa</a></li>
+          <li><a href="outras_tecno.html">Outras Tecnologias</a></li>
+          <li><a href="conclusoes.html">Conclusões</a></li>
+          <li><a href="bibliografia.html">Bibliografia</a></li>
+          <li><a href="perguntas.html">Perguntas</a></li>
+
+        </ul>
+      </div>
+    </div>
+    <div id="site_content">
+
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Modulação e protocolo LoRaWAN</h2>
+        <br>
+        <h1>Modulação</h1>
+        <br>
+        <p>Em LoRa, um sistema final possui um módulo de rádio responsável pela codificação/decodificação das informações em um sinal. Esse sinal é transmitido e recebido por um gateway que também possui o mesmo módulo que é capaz de modular/demodular o sinal. Portanto, a comunicação entre sistema final e gateway é bidirecional, e estes dispositivos que se comunicam recebem nome de "TRANSCEIVERS".</p>
+
+        <div class="imageCaption"><img src="imgs/radioModulo.png" class="imagePadding"><br>Módulo de rádio presente nos sistemas finais e gateway.</div>
+
+        <br>
+
+        <p>A modulação de sinais na arquitetura LoRa é feita através do Chirp Spread Spectrum e é propagada em faixas de frequência ISM não licenciadas, o que, legalmente, facilita a sua utilização por entidades e, ao mesmo tempo, barateia o custo de seu uso. Um pulso chirp é um sinal cuja frequência varia monotonamente. Se aumentamos a frequência temos um "Up-chirp" e se ela decresce temos um "Down-Chirp". Os chirps são deslocados ciclicamente, isto é, quando se atinge a frequência mais alta retorna-se para a frequência mais baixa. Com isso, a informação que qualquer sinal carrega é dada pelos saltos de frequência</p>
+
+        <div class="imageCaption"><img src="imgs/loraBands.png" class="imagePadding"><br>Faixas de frequência nas quais LoRa opera em diferentes países.[10]</div>
+        <br>
+        <div class="imageCaption"><img src="imgs/upDownChirps.png" class="imagePadding"><br>Sinal no tempo (esquerda). Chirps (direita).</div>
+
+        <br>
+
+        <p>Um salto, quando decodificado, representará um símbolo. Um símbolo representa um ou mais bits de dados e apresenta 2<sup>SF</sup> valores possíveis (em binário, seria equivalente a um número de SF bits). De modo enfático, o fator de espalhamento (SF) representa o número de bits da modulação.Na prática, ele representa a duração de um chirp, ou seja, quanto maior o SF, mais longo é o chirp e mais bits serão transmitidos por chirp. A cada incremento no SF, o tempo no ar e um chirp dobra, como na tabela a seguir:</p>
+
+        <div class="imageCaption"><img src="imgs/SFxTOA.jpeg" class="imagePadding"><br>Relação entre SF e tempo de um chirp no ar[5].</div>
+
+        <br>
+
+        <p> Além deste há outros paramêtros caracteristicos de implementação da rede. Dentre eles a largura de banda (BW) que especifica em que faixa de frequência a rede irá operar. Com esses dois parametros conseguimos obter as seguintes relações:</p>
+
+        <p>Taxa de símbolo/segundo:</p>
+
+        <div class="imageCaption"><img src="imgs/rBits.png" class="imagePadding"><br>Taxa de símbolo/segundo[3]</div>
+
+        <br>
+
+        <p>E o período de um símbolo:</p>
+
+        <div class="imageCaption"><img src="imgs/symbolPeriod.png" class="imagePadding"><br>Período de um símbolo[3]</div>
+
+        <br>
+
+        <p>Há ainda a taxa de código (CR) que está relacionada a resistência a ruídos e facilidade de decodificação. Em uma rede que se propaga pelo ar (lê-se alta propabilidade de erro), é importante que os sinais apresentem em seu protocolo trechos de verificação ou possível correção de erros. As diferentes CR possibilitam a arquitetura tal feito. Portanto podemos introduzir a nova relação matemática:</p>
+
+        <div class="imageCaption"><img src="imgs/rbNova.png" class="imagePadding"><br>Taxa de bits.[3]</div>
+
+        <br>
+
+        <p>A vantagem do uso do CSS é que os sinais emitidos são robustos, não propagam ruídos, apresente resistência a diferentes meios e não sofrem interferência na sua faixa de frequência (por conta dos inúmeros dispositivos que podem operar de maneira semelhante). </p>
+
+        <h1>O protocolo LoRaWAN</h1>
+        <br>
+        <p>Utilizando a modulação física da tecnologia LoRa, foi definido um protocolo LoRaWAN (Long Range Wide Area Network) para a codificação e a decodificação do conteúdo das mensagens recebidas e enviadas.</p>
+        <p>A estrutura de um pacote de uplink é composta por um preâmbulo, que identifica o início de um pacote, por um cabeçalho da camada física (PHDR), por um campo CRC, responsável pela verificação da integridade da mensagem, por um cabeçalho CRC e por um campo de payload da camada física (PHYPayload).[5]</p>
+        <br>
+        <div class="imageCaption"><img src="imgs/uplink_PHY.png" class="imagePadding"><br>Estrutura da mensagem de uplink.[5]</div>
+        <br>
+        <p>Para o pacote de downlink, o padrão definido foi manter os campos do pacote de uplink com excessão dos de verificação de mensagens, CRC e Header CRC.[5]</p>
+        <br>
+        <div class="imageCaption"><img src="imgs/downloadPHY.png" class="imagePadding"><br>Estrutura da mensagem de downlink.[5]</div>
+        <br>
+        <p>O campo de payload da camada física é uma composição de outros campos. Ele começa com um cabeçalho MAC (MHDR), seguido de um MACPayload (substituído por um join-request ou join-response para OTAA) e termina com um código que verifica a sua integridade (MIC). O cabeçalho MAC (MHDR) especifica o tipo de mensagem (MType) e a versão formato do quadro utilizado para codificar o quadro[5]</p>
+        <br>
+        <div class="imageCaption"><img src="imgs/MACHeader.png" class="imagePadding"><br>Estrutura do cabeçalho MAC.[5]</div>
+        <br>
+        <div class="imageCaption"><img src="imgs/loraMessageTypes.png" class="imagePadding"><br>Tipos de mensagem (MType).[5]</div>
+        <br>
+        <p>Adentrando ainda mais na arquitetura do protocolo, o campo do MACPayload é formado por um cabeçalho para o quadro  (FHDR), um campo de porta opcional (FPort) e um campo opcional de payload do quadro (FRMPayload).[5]</p>
+        <p>O Cabeçalho do quadro (FHDR) é composto por um identificador do dispositivo final na rede (Desenvolvido no tópico "Ativação de dispositivos"), por um campo de controle (FCtrl), por um contador de quadros (FCnt) com tamanho igual a dois octetos e por um campo para opçõe (FOps) com quinze octetos de tamanho.[10]</p>
+        <br>
+        <div class="imageCaption"><img src="imgs/protocoloLoRaWAN.jpg" class="imagePadding"><br>Protocolo LoRaWAN.[10]</div>
+        <br>
+        <div class="imageCaption"><img src="imgs/modulationWProtocol.png" class="imagePadding"><br>Identificação do preâmbulo e dos subsequentes símbolos em um gráfico Frequência x Tempo.</div>
+        <br><br><br>
+        <p>A partir de todos esses campos do protocolo, a rede LoRa consegue oferecer segurança, ajuste de consumo de dados e adaptação à variados dispositivos finais. </p>
+        <br>
+      </div>
+    </div>
+    <div id="footer">
+      Copyright &copy; textured_blue | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Free CSS Templates</a>
+    </div>
+  </div>
+</body>
+</html>
