@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>TRILL - Redes de Computadores II</title>
+  <meta name="description" content="website description" />
+  <meta charset="UTF-8"/>
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html"><span class="logo_colour">T</span>R<span class="logo_colour">I</span><span class="logo_colour">L</span><span class="logo_colour">L</span></a></h1>
+        </div>
+        <div id="logoPadding">
+        <h2>Trasnparent Interconection of Lots of Links</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="introducao.html">Introdução</a></li>
+          <li class="selected"><a href="ethernet_bridges.html">Ethernet e Bridges</a></li>
+          <li><a href="dispositivos.html">TRILL - Rbridges</a></li>
+          <li><a href="conclusoes.html">Conclusões</a></li>
+          <li><a href="perguntas.html">Perguntas</a></li>
+          <li><a href="bibliografia.html">Bibliografia</a></li>
+
+        </ul>
+      </div>
+    </div>
+    <div id="site_content">
+
+      <div id="content">
+        <!-- insert the page content here -->
+        <h2>Ethernet e Bridges</h2>
+
+        <h4>Ethernet</h4>
+          <p>A tecnologia Ethernet é um protocolo da camada de enlace da Internet que começou a ter uma influência expressiva na Internet na década de 90. Hoje em dia, esse protocolo é o dominante dessa camada e conecta os diferentes dispositivos finais de uma rede local.</p>
+          <p>Essa tecnologia é baseada no endereço Media Acess Control (MAC) e o utiliza para identificar a origem e o destino de um quadro da camada de enlace. Diferentemente do Internet Protocol (IP), no qual é possível inferir informações sobre a localização do destino a partir dos bytes do endereço, o MAC não é separado de forma inteligente, resultando em um endereço que funciona, simplesmente, como um identificador.</p>
+          <p>A camada de rede da Internet é responsável pelo roteamento e encaminhamento de pacotes. Para isso, foi desenvolvido o roteador que tem, no mínimo, duas interfaces de rede, e que conta com protocolos de roteamento para encaminhar os pacotes para as interfaces de saída mais apropriadas, de modo a otimizar o uso da rede. O roteamento é feito utilizando a estrutura hierárquica do IP e implementa mecanismos para evitar loops no encaminhamento de pacotes, como o Hop Count.</p>
+          <p>A camada de enlace, em contrapartida, é responsável por encaminhar quadros. Para isso, foi desenvolvido a Bridge. Da mesma forma com que a camada de rede roteia os pacotes, Radia Perlman defende que os quadros, na camada de enlace, também devem ser roteados, nesse caso, pelas bridges. Isso porque a rota desses seria mais otimizada, evitando loops e caminhos com métricas piores. No entanto, o protocolo que foi imposto para que Radia contruísse, na época, por questões burocráticas do setor privado, não podia contar com mecanismos avançados de roteamento, deixando as bridges com o papel de encamminhamento e com um mecanismo de roteamento super ineficiente se considerada a topologia da rede. Dadas essas restrições, a pesquisadora desenvolveu o Spanning Tree Protocol (STP).</p>
+
+        <h4>Spanning Tree Protocol (STP)</h4>
+
+
+      </div>
+    </div>
+    <div id="footer">
+      Copyright &copy; textured_blue | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Free CSS Templates</a>
+    </div>
+  </div>
+</body>
+</html>
