@@ -28,7 +28,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="introducao.html">Introdução</a></li>
           <li class="selected"><a href="ethernet_bridges.html">Ethernet e Bridges</a></li>
-          <li><a href="dispositivos.html">TRILL - Rbridges</a></li>
+          <li><a href="trillRBridges.html">TRILL - Rbridges</a></li>
           <li><a href="conclusoes.html">Conclusões</a></li>
           <li><a href="perguntas.html">Perguntas</a></li>
           <li><a href="bibliografia.html">Bibliografia</a></li>
@@ -56,7 +56,8 @@
           <p>Uma vez comprovada a formação de loops, tornou-se necessário criar um protocolo para eliminá-los. Radia perlman desenvolveu, então, o Spanning Tree Protocol, que, funcionalmente, bloqueia enlaces da topologia estratégicamente de forma a eliminar todos os possíveis loops. A ideia é fazer com que a topologia da rede torne-se uma árvore geradora, já que, pela definição, ela contém todos as bridges originais e não contém ciclos.
           <div class="imageCaption"><img src="imgs/noLoop.png" class="imagePadding"><br>Bloqueio de enlaces para formar a árvore geradora, evitando ciclos</div>
           <br>
-          <p>Esse protocolo resolve o problema do loop e possibilita o funcionamento da camada de enlace mesmo com as limitações que a ela foram impostas. No entanto, inutilizar enlaces significa sobreutilizar outros, impactando significamente no congestionamento da rede como um todo. Além disso, de um ponto de vista comercial, gasta-se dinheiro sem necessidade pois o uso dos enlaces nem sempre é gratuito. Ainda, como os enlaces bloqueados são fixos, o caminho para o qual as bridges encaminham os quadros não necessáriamente são os de melhores métricas. 
+          <p>Esse protocolo resolve o problema do loop e possibilita o funcionamento da camada de enlace mesmo com as limitações que a ela foram impostas. No entanto, inutilizar enlaces significa sobreutilizar outros, impactando significamente no congestionamento da rede como um todo. Além disso, de um ponto de vista comercial, gasta-se dinheiro sem necessidade pois o uso dos enlaces nem sempre é gratuito. Ainda, como os enlaces bloqueados são fixos, o caminho para o qual as bridges encaminham os quadros não necessáriamente são os de melhores métricas.
+          <p>Visando eliminar os pontos negativos desse protocolo, Radia Perlman propôs uma melhoria nas bridges, as Rbrides e desenvolveu o protocolo Transparent Interconection of Lots of Links. <a href="trillRBridges.html"> TRILL - RBridges </a>
 
       </div>
     </div>
