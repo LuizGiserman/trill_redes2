@@ -25,10 +25,11 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="index.html">Home</a></li>
+
           <li><a href="introducao.html">Introdução</a></li>
-          <li class="selected"><a href="ethernet_bridges.html">Ethernet e Bridges</a></li>
+          <li><a href="arquitetura.html">Ethernet e Bridges</a></li>
           <li><a href="trillRBridges.html">TRILL - Rbridges</a></li>
+          <li><a href="intermediary.html">Protocolo IS-IS</a></li>
           <li><a href="conclusoes.html">Conclusões</a></li>
           <li><a href="perguntas.html">Perguntas</a></li>
           <li><a href="bibliografia.html">Bibliografia</a></li>
@@ -45,6 +46,9 @@
         <h4>Ethernet</h4>
           <p>A tecnologia Ethernet é um protocolo da camada de enlace da Internet que começou a ter uma influência expressiva na Internet na década de 90. Hoje em dia, esse protocolo é o dominante dessa camada e conecta os diferentes dispositivos finais de uma rede local.</p>
           <p>Essa tecnologia é baseada no endereço Media Acess Control (MAC) e o utiliza para identificar a origem e o destino de um quadro da camada de enlace. Diferentemente do Internet Protocol (IP), no qual é possível inferir informações sobre a localização do destino a partir dos bytes do endereço, o MAC não é separado de forma inteligente, tornando-se um endereço que funciona, simplesmente, como um identificador.</p>
+
+          <p>Em uma rede Ethernet cada maquina tem n rotas para seus vizinhos, portanto, um total de n^2 conexões no total. Isso torna inviável a implementação em uma rede grande em que todos os computadores são vizinhos. </p>
+
           <p>A camada de rede da Internet é responsável pelo roteamento e encaminhamento de pacotes. Para isso, foi desenvolvido o roteador que tem, no mínimo, duas interfaces de rede, e que conta com protocolos de roteamento para encaminhar os pacotes para as interfaces de saída mais apropriadas, de modo a otimizar o uso da rede. O roteamento é feito utilizando a estrutura hierárquica do IP e implementa mecanismos para evitar loops no encaminhamento de pacotes, como o Hop Count.</p>
           <p>A camada de enlace, em contrapartida, é responsável por encaminhar quadros. Para isso, foi desenvolvido a Bridge. Da mesma forma com que a camada de rede roteia os pacotes, Radia Perlman defende que os quadros, na camada de enlace, também devem ser roteados, nesse caso, pelas bridges. Isso porque a rota desses seria mais otimizada, evitando loops e caminhos com métricas piores. No entanto, na época, por questões burocráticas do setor privado, o protocolo que foi imposto para que Radia construísse não podia contar com mecanismos avançados de roteamento, deixando as bridges com o papel de encaminhamento e com um mecanismo de roteamento super ineficiente se considerada a topologia da rede. Dadas essas restrições, a pesquisadora desenvolveu o Spanning Tree Protocol (STP).</p>
 
