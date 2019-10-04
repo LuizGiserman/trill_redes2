@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>TRILL - Redes de Computadores II</title>
+  <meta name="description" content="website description" />
+  <meta charset="UTF-8"/>
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html"><span class="logo_colour">T</span>R<span class="logo_colour">I</span><span class="logo_colour">L</span><span class="logo_colour">L</span></a></h1>
+        </div>
+        <div id="logoPadding">
+        <h2>Trasnparent Interconection of Lots of Links</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+
+          <li><a href="index.html">Home</a></li>
+          <li><a href="introducao.html">Introdução</a></li>
+          <li><a href="ethernet_bridges.html">Ethernet e Bridges</a></li>
+          <li class="selected"><a href="trillISIS.html">TRILL - IS-IS</a></li>
+          <li><a href="trillRBridges.html">TRILL - RBridges </a></li>
+          <li><a href="conclusoes.html">Conclusões</a></li>
+          <li><a href="perguntas.html">Perguntas</a></li>
+          <li><a href="bibliografia.html">Bibliografia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="site_content">
+
+      <div id="content">
+        <!-- insert the page content here -->
+        <!--<p>Ficou claro para Radia, portanto, que é necessário fazer o roteamendo de quadros na camada de enlace. O protocolo IP não é a melhor escolha para ditar o roteamento. Isso porque</p> -->
+        <!-- me parece que a proposiçao acima não faz muito sentido, acho que a ideia da radia  nem era chegar na camada de transporte, portanto ip n era nem uma opçao-->
+        <h2> Transparent Interconection of Lots of Links (TRILL) </h2>
+        <p> Para a implementação do protocolo TRILL, Radia definiu que cada bridge deve guardar o estado do enlace da topologia da camada de enlace. Dessa forma, é possível que a bridge aplique o algoritmo de Dijkstra, assim como no OSPF - protocolo utilizado na camada de rede - , determinando a árvore geradora mínima que um quadro deve percorrer. </p>
+
+        <p> Para obter essa relação de estados do enlace, é necessário utilizar um protocolo de roteamento na camada de enlace. Escolher o protocolo OSPF tornaria necessário associar um endereço IP para cada bridge, o que não é muitro atraente do ponto de vista da rede, já que os endereços de IPv4 já estão esgotados. Tendo isso em mente, a pesquisadora escolheu utilizar o protocolo IS-IS, que funciona em conjunto com qualquer outro protocolo, o que possibilita o roteamento por meio de endereços MAC.</p>
+
+
+        <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+        </head>
+
+        <h4> Intermediary System - Intermediary System (IS - IS)</h4>
+
+        <p>O protocolo  IS-IS (Intermediary system- Intermediary System) é um protocolo de roteamento intra domínio e foi criado para enviar mensagens de Connectionless-mode Network Service (CLNS). Ele é um protocolo de Estado de enlace, ou seja, todos os roteadores de uma rede tem conhecimento da topologia completa da rede,
+        dessa forma, assim como no OSPF, ele utiliza o algorítmo de Dijkstra para computar o menor caminho e portanto obter a melhor rota para um destino.
+        Diferente do OSPF, não é necessário definir uma rede de área 0 como back bone. Os roteadores IS-IS operam em dois níveis:</p>
+        <p><b>Nível 1</b>: Realiza o roteamento entre Estações e roteadores da mesma área.</p>
+        <p><b>Nível 2</b>: Realiza o roteamento apenas entre outros roteadores de nível.</p>
+
+        <p>Cada um desses níveis possui um banco de dados próprio. Um roteador pode realizar roteamento nos dois níveis, sendo assim designado roteador de nível 1-2. Normalmente estes roteadores são roteadores de borda da rede.</p><br>
+
+        <div class="imageCaption"><img src="imgs/isislvl.png" class="imagePadding"><br>Topologia de uma rede IS-IS</div><br>
+
+        <p>As métricas do IS-IS são arbitrátrias e definidas pelo usuário, com um valor de 10 como padrão.
+        Além disso, embora o IS-IS possa suportar IP, ele foi construido para realizar roteamento em camada 2, efetivamente roteando para endereços MAC.</p>
+
+        <div class="imageCaption"><img src="imgs/isisheader.png" class="imagePadding"><br>Cabeçalho do pacote IS-IS</div><br>
+
+        <a href="https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html ">Descrever os campos</a>
+
+        <p>O IS-IS contém 4 tipos de mensagem:</p>
+
+        <p><b>Pacote Hello</b>: Trocado periódicamente entre roteadores vizinhos para verificar se estão conectados.</p>
+        <p><b>LSP (Link State PDU)</b>:   Implementa TLV's contendo as informações de roteamento. Este é o pacote distribuido durante a inundação.</p>
+        <p><b>CSNP</b>: ? </p><!--his packet will be sent only by the DIS. By default for every 10 seconds, CSNP packet will be transmitted by DIS. This will contain the list of LSP ID's along with sequence number and checksum.-->
+        <p><b>PSNP</b>:  Utilizado para tratamento de erros </p>
+        <!-- wikipedia  https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html
+        Hello Packet: The IS-IS hello packets needs to be exchanged periodically between 2 routers to establish adjacency. Based on the negotiation, one of them will be selected as DIS (Designated IS). This hello packet will be sent separately for Level-1 or Level-2.
+
+
+        LSP: This contains the actual route information. This LSP can contain many type-length-values (TLV's).
+
+        CSNP: This packet will be sent only by the DIS. By default for every 10 seconds, CSNP packet will be transmitted by DIS. This will contain the list of LSP ID's along with sequence number and checksum.
+
+        PSNP: If the router which receives CSNP packet finds some discrepancy in its own database, it will send an PSNP request asking the DIS to send specific LSP back to it.
+        -->
+
+        <p>A existência de um campo TLV permite  que sejam adicionados novos campos de tamanhos variados, facilitando a expansão e a flexibilidade do protocolo. Esse foi um dos motivos do  IS-IS ter sido escolhido para a implementação do TRILL</p>
+
+        <h4>Diferenças e semelhanças entre OSPF e IS-IS</h4>
+
+        <table>
+
+          <tr>
+            <td>OSPF (RFC2328)</td>
+            <td>IS-IS (ISO 10589 )</td>
+          </tr>
+          <tr>
+            <td>Protocolo de Estado de enlace</td>
+            <td>Protocolo de Estado de enlace</td>
+          </tr>
+
+          <tr>
+            <td>IGP</td>
+            <td>IGP</td>
+          </tr>
+
+          <tr>
+            <td>Suporta sub-máscaras de rede</td>
+            <td>Suporta sub-máscaras de rede</td>
+          </tr>
+          <tr>
+            <td>Utiliza Dijkstra para calcular a melhor rota</td>
+            <td>Utiliza Dijkstra para calcular a melhor rota</td>
+          </tr>
+
+          <tr>
+            <td>É dependente de IP</td>
+            <td>Independe do protocolo e opera sobre camada 2</td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td>Utiliza <a href="http://validator.w3.org/check?uri=referer">TLV Encoding</a> </td>
+          </tr>
+
+
+
+
+
+        </table>
+
+    
+
+      </div>
+    </div>
+    <div id="footer">
+      Copyright &copy; textured_blue | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Free CSS Templates</a>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!--
+
+
+Protocolo is is . É um protocolo desenvolvido pela ISO. É semlhante ao protocolo ospf pois é um protocolo de estado de enlace porem nao é baseado no IP.
+Ele é baseado em CLNS.
+Semelhante ao OSPF onde temos roteadores de borda de área, no protocolo IS IS tambem temos roteadores de área e entre áreas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+O protocolo Is-Is utiliza mensagens de hello
+A metrica é definida pelo usuario com um valor de 10 como padrão.
+Roteadores de nivel 2 mantem rotas para o backbone. É muito utilizado em ISPs
+lvl1-2 routers mantem conexoes entre back bones. Mantem banco de dados separados de lvl 1 e lvl 2
+Diferente do ospf onde uma area é eleita area de backbone, todas os roteadores de lvl 2 sao backbone.
+
+
+Spanning tree protocol
+ Disabilita dinamicamente um dos links para evitar loops. Isso acarreta o problema de disperdicio de banda passante. Um Rapid Spanning tree faz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Por sua vez o Trill , utiliza o IS-IS dá a inteligencia de roteamento para a camada 2 em switches.
+MAC address routing. Dessa forma não há bloqueamento me links.
+É Permitido tabm o ECMP equal cost mutilple paths, algo que no spanning tree era impossivel devido a desabilitacao dos links.
+A convergencia tambem é rapida,
+em STP ela era lenta pq (?)????
+e voce nao tem q configurar ISIS
+Diferentes fabricantes implementam seus proprios TRILL
+Fabric path é um melhoramento da cisco pra TRILL
+
+
+Fabric Path
+
+
+No ISIS- temos 4 tipos de pacote, hello packat que é trocado periodicamente entre 2 roteadores para estabelecer adjacencia e designaro IS
+LSP contem a informação Type lenght values TLV
+CSNP – é enviado pelo roteador designado  com a lista de TLVs
+PSNP é usado para tratemnto de erros
+
+COMPARAÇÔES COM O OSPF
+
+<make table> ambos suportam subnet maks , rodam dijstra e suportam autenticação no protocolo de roteamento
+NAO REQUER AREA 0
+
+o uso de type lengt value TLV permite uma expansão maior em escala, por isso q ele ée usado em isps e data centers.
+
+O que é TLV
+
+
+
+
+https://community.cisco.com/t5/blogues-de-data-center/fabricpath-nova-tecnologia-da-cisco-para-extens%C3%A3o-da-rede-layer/ba-p/3106331
+
+First, let's discuss the commonalities between the two technologies because they are similar and strive to address the same challenges. At a high level, both use the Layer 2 Multi-Pathing (L2MP) nomenclature. Cisco FabricPath and TRILL both perform L2 routing by encapsulating the original frame and placing a new header with new source and destination address information. This new header adds key components like a TTL, to avoid infinite loops like STP permits, Equal Cost Multi-Path (ECMP)routing to maximize traffic distribution and Reverse Path Checks (RPF) for loop avoidance of broadcast and multicast traffic. Additionally both leverage IS-IS as the control plane routing engine. Admit it, how many of you just did a facepalm when you read that last part? Have no fear, it's not as scary as you think.
+                The differences between the protocols start with the terminology used for the L2MP device. TRILL calls them R-bridges while Cisco FabricPath refers to them as D-bridges. The frame format is different as illustrated below. The Cisco FabricPath frame is on the left while the TRILL frame is on the right. You can see that an additional header is added the TRILL frame referred to as the Next Hop Header and is intended to be used to traverse non L2MP (STP) based networks. Cisco FabricPath addresses this by terminating the L2MP and reverting to traditional STP forwarding.
+
+ISIS  possuem  um endereço de area de 8 octetos.
+
+
+https://www.networkworld.com/article/2227471/full-tilt-boogie-networking--cisco-s-fabricpath-vs--ietf-trill.html
+-->

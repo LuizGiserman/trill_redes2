@@ -25,14 +25,15 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-
           <li><a href="index.html">Home</a></li>
-          <li><a href="introducao.html">Introdução</a></li>
+          <li ><a href="introducao.html">Introdução</a></li>
           <li><a href="ethernet_bridges.html">Ethernet e Bridges</a></li>
-          <li class="selected"><a href="trillRBridges.html">TRILL - Rbridges</a></li>
+          <li><a href="trillISIS.html">TRILL - IS-IS</a></li>
+          <li class="selected"><a href="trillRBridges.html">TRILL - RBridges </a></li>
           <li><a href="conclusoes.html">Conclusões</a></li>
           <li><a href="perguntas.html">Perguntas</a></li>
           <li><a href="bibliografia.html">Bibliografia</a></li>
+
         </ul>
       </div>
     </div>
@@ -40,39 +41,30 @@
 
       <div id="content">
         <!-- insert the page content here -->
-        <!--<p>Ficou claro para Radia, portanto, que é necessário fazer o roteamendo de quadros na camada de enlace. O protocolo IP não é a melhor escolha para ditar o roteamento. Isso porque</p> -->
-        <!-- me parece que a proposiçao acima não faz muito sentido, acho que a ideia da radia  nem era chegar na camada de transporte, portanto ip n era nem uma opçao-->
 
+        <p> Radia definiu, também, que o protocolo TRILL deve ter um campo de hop count em seu cabeçalho. Esse campo é responsável por previnir catástrofes relacionadas a loops de quadros, eliminando o pacote caso o mesmo entre em loop. Além disso, o cabeçalho TRILL conta com endereços MAC de origem e de destino, de modo a possibilitar o encaminhamento de quadros. </p>
 
-
-
-      Conforme visto o algoritmo de <a href="ethernet_bridges.html">Spanning Trees </a> Tem algumas desvantagens:
-      <ul>
-        <li>Ao desabilitar uma das conexões é disperdiçado banda passante em um link, reduzindo o desempenho da rede.</li>
-        <li>A convergência de uma spanning Tree, ou até mesmo uma rapid Spanning tree é lenta.</li> <!-- insira fonte, o  indiano do youtube que disse -->
-        <li>Devido a desabilitação de alguns links, <a href="https://youtu.be/N-25NoCOnP4?t=920">o caminho nem sempre é ótimo</a> de um ponto ao outro.</li>
-
-
-      </ul>
-      <div class="imageCaption"><img src="imgs/sptlinkdisabled.png" class="imagePadding"><br>Ao desabilitar um link redundante, ao mesmo tempo é impedido loop, é desperdiçado band a passante</div><br>
-
-      A solução Encontrada por Radia foi utilizar um protocolo de roteamento na camada 2.  O <a href="intermediary.html">Protocolo IS-IS</a>no Trill é o responsável por criar as rotas para essa rede.
-
+        <p>Para guardar os estados do enlace e processar o novo cabeçalho, foi necessário criar um novo tipo de bridge, as RBridges.</p>
 
         <h2>RBridges</h2>
-        <p>As Rbridges atendem a várias funcionalidades:</p>
+
+        <p>As Rbridges garantem as seguintes funcionalidades: </p>
         <ul>
-            <li>Têm a capacidade de coexistir com brdiges antigas, de modo a garantir uma atualização para a nova tecnologia de forma gradual.</li>
-            <li>Comuta quadros utilizando o menor caminho entre a origem e o destino, mantendo sempre o estado dos enlaces.</li>
-            <li>Funciona com qualquer protocolo da camada 3.</li>
-            <li>Permite Equal cost multi path .</li>
+          <li>Têm a capacidade de coexistir com brdiges antigas, de modo a garantir uma atualização para a nova tecnologia de forma gradual.</li>
+          <li>Comuta quadros utilizando o menor caminho entre a origem e o destino, mantendo sempre o estado dos enlaces.</li>
+          <li>Funciona com qualquer protocolo da camada 3.</li>
+          <li>Permite Equal cost multi path.</li>
         </ul>
 
+        <p>Para garantir a coexistência entre bridges e Rbridges, o protocolo ethernet é encapsulado por um cabeçalho TRILL que, por sua vez, é encapsulado por um outro cabeçalho ethernet. Esse último encapsulamento faz com que o quadro pareça um pacote comum para uma bridge comum. Uma Rbridge conhece esse encapsulamente e é capaz de desfazê-lo, extrair as informações do cabeçalho TRILL, atualizar o valor de hop count e reencapsulá-lo com um cabeçalho ethernet.</p>
 
-      Atualmente os fabricantes desenvolvem suas próprias versões do protocolo Trill como o <a href="https://www.cisco.com/c/dam/global/en_ca/assets/plus/assets/pdf/FabricPath-RFULLER.pdf">FabricPath da cisco</a>
+        <div class="imageCaption"><img src="imgs/trillHeader.png" class="imagePadding"><br>Figura 3: Cabeçalho TRILL[2].</div>
+        <br>
 
 
 
+
+        <p>Atualmente os fabricantes desenvolvem suas próprias versões do protocolo Trill como o <a href="https://www.cisco.com/c/dam/global/en_ca/assets/plus/assets/pdf/FabricPath-RFULLER.pdf">FabricPath da cisco</a></p>
 
       </div>
     </div>
@@ -82,105 +74,3 @@
   </div>
 </body>
 </html>
-
-
-
-
-
-
-
-<!--
-
-
-Protocolo is is . É um protocolo desenvolvido pela ISO. É semlhante ao protocolo ospf pois é um protocolo de estado de enlace porem nao é baseado no IP.
-Ele é baseado em CLNS.
-Semelhante ao OSPF onde temos roteadores de borda de área, no protocolo IS IS tambem temos roteadores de área e entre áreas.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-O protocolo Is-Is utiliza mensagens de hello
-A metrica é definida pelo usuario com um valor de 10 como padrão.
-Roteadores de nivel 2 mantem rotas para o backbone. É muito utilizado em ISPs
-lvl1-2 routers mantem conexoes entre back bones. Mantem banco de dados separados de lvl 1 e lvl 2
-Diferente do ospf onde uma area é eleita area de backbone, todas os roteadores de lvl 2 sao backbone.
-
-
-Spanning tree protocol
- Disabilita dinamicamente um dos links para evitar loops. Isso acarreta o problema de disperdicio de banda passante. Um Rapid Spanning tree faz
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Por sua vez o Trill , utiliza o IS-IS dá a inteligencia de roteamento para a camada 2 em switches.
-MAC address routing. Dessa forma não há bloqueamento me links.
-É Permitido tabm o ECMP equal cost mutilple paths, algo que no spanning tree era impossivel devido a desabilitacao dos links.
-A convergencia tambem é rapida,
-em STP ela era lenta pq (?)????
-e voce nao tem q configurar ISIS
-Diferentes fabricantes implementam seus proprios TRILL
-Fabric path é um melhoramento da cisco pra TRILL
-
-
-Fabric Path
-
-
-No ISIS- temos 4 tipos de pacote, hello packat que é trocado periodicamente entre 2 roteadores para estabelecer adjacencia e designaro IS
-LSP contem a informação Type lenght values TLV
-CSNP – é enviado pelo roteador designado  com a lista de TLVs
-PSNP é usado para tratemnto de erros
-
-COMPARAÇÔES COM O OSPF
-
-<make table> ambos suportam subnet maks , rodam dijstra e suportam autenticação no protocolo de roteamento
-NAO REQUER AREA 0
-
-o uso de type lengt value TLV permite uma expansão maior em escala, por isso q ele ée usado em isps e data centers.
-
-O que é TLV
-
-
-
-
-https://community.cisco.com/t5/blogues-de-data-center/fabricpath-nova-tecnologia-da-cisco-para-extens%C3%A3o-da-rede-layer/ba-p/3106331
-
-First, let's discuss the commonalities between the two technologies because they are similar and strive to address the same challenges. At a high level, both use the Layer 2 Multi-Pathing (L2MP) nomenclature. Cisco FabricPath and TRILL both perform L2 routing by encapsulating the original frame and placing a new header with new source and destination address information. This new header adds key components like a TTL, to avoid infinite loops like STP permits, Equal Cost Multi-Path (ECMP)routing to maximize traffic distribution and Reverse Path Checks (RPF) for loop avoidance of broadcast and multicast traffic. Additionally both leverage IS-IS as the control plane routing engine. Admit it, how many of you just did a facepalm when you read that last part? Have no fear, it's not as scary as you think.
-                The differences between the protocols start with the terminology used for the L2MP device. TRILL calls them R-bridges while Cisco FabricPath refers to them as D-bridges. The frame format is different as illustrated below. The Cisco FabricPath frame is on the left while the TRILL frame is on the right. You can see that an additional header is added the TRILL frame referred to as the Next Hop Header and is intended to be used to traverse non L2MP (STP) based networks. Cisco FabricPath addresses this by terminating the L2MP and reverting to traditional STP forwarding.
-
-ISIS  possuem  um endereço de area de 8 octetos.
-
-
-https://www.networkworld.com/article/2227471/full-tilt-boogie-networking--cisco-s-fabricpath-vs--ietf-trill.html
--->

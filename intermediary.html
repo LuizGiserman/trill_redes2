@@ -59,35 +59,32 @@
         </style>
         </head>
 
-        O protocolo  IS-IS (Intermediary system- Intermediary System) é um protocolo de roteamento intra domínio.
-        Ele foi criado para enviar mensagens de Connectionless-mode Network Service (<a href="https://en.wikipedia.org/wiki/Connectionless-mode_Network_Service">CLNS</a>).<br>
-        Ele é um protocolo de Estado de enlace, ou seja, todos os roteadores de uma rede tem conhecimento da topologia completa da rede,
-        dessa forma, assim como no OSPF ele utiliza o algorítmo de <a href="https://pt.wikipedia.org/wiki/Algoritmo_de_Dijkstra">Dijkstra</a> 
-        para computar o menor caminho e portanto obter a melhor rota para um destino.
+        <p>O protocolo  IS-IS (Intermediary system- Intermediary System) é um protocolo de roteamento intra domínio e foi criado para enviar mensagens de Connectionless-mode Network Service (CLNS). Ele é um protocolo de Estado de enlace, ou seja, todos os roteadores de uma rede tem conhecimento da topologia completa da rede,
+        dessa forma, assim como no OSPF, ele utiliza o algorítmo de Dijkstra para computar o menor caminho e portanto obter a melhor rota para um destino.
         Diferente do OSPF, não é necessário definir uma rede de área 0 como back bone. Os roteadores IS-IS operam em dois níveis:<br>
         Nível 1: Realiza o roteamento entre Estações e roteadores da mesma área.
         Nível 2: Realiza o roteamento apenas entre outros roteadores de nível.
-        Cada um desses níveis possui um banco de dados próprio. Um roteador pode realizar roteamento nos dois níveis, sendo assim designado roteador de nível 1-2. Normalmente estes roteadores são roteadores de borda da rede.<br>
+        Cada um desses níveis possui um banco de dados próprio. Um roteador pode realizar roteamento nos dois níveis, sendo assim designado roteador de nível 1-2. Normalmente estes roteadores são roteadores de borda da rede.</p><br>
 
         <div class="imageCaption"><img src="imgs/isislvl.png" class="imagePadding"><br>Topologia de uma rede IS-IS</div><br>
 
-        As métricas do IS-IS são arbitrátrias e definidas pelo usuário, com um valor de 10 como padrão.
-        Além disso, embora o IS-IS possa suportar IP, ele foi construido para realizar roteamento em camada 2, efetivamente roteando para endereços MAC.<br>
+        <p>As métricas do IS-IS são arbitrátrias e definidas pelo usuário, com um valor de 10 como padrão.
+        Além disso, embora o IS-IS possa suportar IP, ele foi construido para realizar roteamento em camada 2, efetivamente roteando para endereços MAC.</p><br>
 
         <div class="imageCaption"><img src="imgs/isisheader.png" class="imagePadding"><br>Cabeçalho do pacote IS-IS</div><br>
 
-        <a href="https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html ">Descrever os campos</a> 
+        <a href="https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html ">Descrever os campos</a>
 
-        O IS-IS contém 4 tipos de mensagem:<br>
+        <p>O IS-IS contém 4 tipos de mensagem:</p>
 
         Pacote Hello: Trocado periódicamente entre roteadores vizinhos.<br>
         LSP (Link State PDU):   Implementa TLV's contendo as informações de roteamento. Este é o pacote distribuido durante a inundação.<br>
         CSNP: ? <!--his packet will be sent only by the DIS. By default for every 10 seconds, CSNP packet will be transmitted by DIS. This will contain the list of LSP ID's along with sequence number and checksum.--><br>
         PSNP:  Utilizado para tratamento de erros<br>
-<!-- wikipedia  https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html 
+<!-- wikipedia  https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html
         Hello Packet: The IS-IS hello packets needs to be exchanged periodically between 2 routers to establish adjacency. Based on the negotiation, one of them will be selected as DIS (Designated IS). This hello packet will be sent separately for Level-1 or Level-2.
 
- 
+
 LSP: This contains the actual route information. This LSP can contain many type-length-values (TLV's).
 
 CSNP: This packet will be sent only by the DIS. By default for every 10 seconds, CSNP packet will be transmitted by DIS. This will contain the list of LSP ID's along with sequence number and checksum.
@@ -135,7 +132,7 @@ PSNP: If the router which receives CSNP packet finds some discrepancy in its own
 
 
 
-      
+
 
         </table>
 
