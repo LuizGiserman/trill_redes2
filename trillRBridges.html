@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>LoRa - Redes de Computadores I</title>
+  <title>TRILL - Redes de Computadores II</title>
   <meta name="description" content="website description" />
   <meta charset="UTF-8"/>
   <meta name="keywords" content="website keywords, website keywords" />
@@ -15,20 +15,21 @@
     <div id="header">
       <div id="logo">
         <div id="logo_text">
-          <h1><a href="index.html"><span class="logo_colour">L</span>o<span class="logo_colour">R</span>a</a></h1>
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html"><span class="logo_colour">T</span>R<span class="logo_colour">I</span><span class="logo_colour">L</span><span class="logo_colour">L</span></a></h1>
         </div>
         <div id="logoPadding">
-        <h2>Long Range</h2>
+        <h2>Trasnparent Interconection of Lots of Links</h2>
         </div>
       </div>
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
 
+          <li><a href="index.html">Home</a></li>
           <li><a href="introducao.html">Introdução</a></li>
-          <li><a href="arquitetura.html">Ethernet e Bridges</a></li>
-          <li><a href="trillRBridges.html">TRILL - Rbridges</a></li>
-          <li><a href="intermediary.html">Protocolo IS-IS</a></li>
+          <li><a href="ethernet_bridges.html">Ethernet e Bridges</a></li>
+          <li class="selected"><a href="trillRBridges.html">TRILL - Rbridges</a></li>
           <li><a href="conclusoes.html">Conclusões</a></li>
           <li><a href="perguntas.html">Perguntas</a></li>
           <li><a href="bibliografia.html">Bibliografia</a></li>
@@ -42,8 +43,8 @@
         <!--<p>Ficou claro para Radia, portanto, que é necessário fazer o roteamendo de quadros na camada de enlace. O protocolo IP não é a melhor escolha para ditar o roteamento. Isso porque</p> -->
         <!-- me parece que a proposiçao acima não faz muito sentido, acho que a ideia da radia  nem era chegar na camada de transporte, portanto ip n era nem uma opçao-->
 
-    
-      
+
+
 
       Conforme visto o algoritmo de <a href="ethernet_bridges.html">Spanning Trees </a> Tem algumas desvantagens:
       <ul>
@@ -51,7 +52,7 @@
         <li>A convergência de uma spanning Tree, ou até mesmo uma rapid Spanning tree é lenta.</li> <!-- insira fonte, o  indiano do youtube que disse -->
         <li>Devido a desabilitação de alguns links, <a href="https://youtu.be/N-25NoCOnP4?t=920">o caminho nem sempre é ótimo</a> de um ponto ao outro.</li>
 
-       
+
       </ul>
       <div class="imageCaption"><img src="imgs/sptlinkdisabled.png" class="imagePadding"><br>Ao desabilitar um link redundante, ao mesmo tempo é impedido loop, é desperdiçado band a passante</div><br>
 
@@ -70,7 +71,7 @@
 
       Atualmente os fabricantes desenvolvem suas próprias versões do protocolo Trill como o <a href="https://www.cisco.com/c/dam/global/en_ca/assets/plus/assets/pdf/FabricPath-RFULLER.pdf">FabricPath da cisco</a>
 
-      
+
 
 
       </div>
@@ -94,7 +95,7 @@
 Protocolo is is . É um protocolo desenvolvido pela ISO. É semlhante ao protocolo ospf pois é um protocolo de estado de enlace porem nao é baseado no IP.
 Ele é baseado em CLNS.
 Semelhante ao OSPF onde temos roteadores de borda de área, no protocolo IS IS tambem temos roteadores de área e entre áreas.
- 
+
 
 
 
@@ -117,7 +118,7 @@ Semelhante ao OSPF onde temos roteadores de borda de área, no protocolo IS IS t
 O protocolo Is-Is utiliza mensagens de hello
 A metrica é definida pelo usuario com um valor de 10 como padrão.
 Roteadores de nivel 2 mantem rotas para o backbone. É muito utilizado em ISPs
-lvl1-2 routers mantem conexoes entre back bones. Mantem banco de dados separados de lvl 1 e lvl 2 
+lvl1-2 routers mantem conexoes entre back bones. Mantem banco de dados separados de lvl 1 e lvl 2
 Diferente do ospf onde uma area é eleita area de backbone, todas os roteadores de lvl 2 sao backbone.
 
 
@@ -146,7 +147,7 @@ Spanning tree protocol
 Por sua vez o Trill , utiliza o IS-IS dá a inteligencia de roteamento para a camada 2 em switches.
 MAC address routing. Dessa forma não há bloqueamento me links.
 É Permitido tabm o ECMP equal cost mutilple paths, algo que no spanning tree era impossivel devido a desabilitacao dos links.
-A convergencia tambem é rapida, 
+A convergencia tambem é rapida,
 em STP ela era lenta pq (?)????
 e voce nao tem q configurar ISIS
 Diferentes fabricantes implementam seus proprios TRILL
@@ -154,7 +155,7 @@ Fabric path é um melhoramento da cisco pra TRILL
 
 
 Fabric Path
-  
+
 
 No ISIS- temos 4 tipos de pacote, hello packat que é trocado periodicamente entre 2 roteadores para estabelecer adjacencia e designaro IS
 LSP contem a informação Type lenght values TLV

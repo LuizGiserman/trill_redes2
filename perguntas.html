@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>LoRa - Redes de Computadores I</title>
+  <title>TRILL - Redes de Computadores II</title>
   <meta name="description" content="website description" />
   <meta charset="UTF-8"/>
   <meta name="keywords" content="website keywords, website keywords" />
@@ -15,25 +15,24 @@
     <div id="header">
       <div id="logo">
         <div id="logo_text">
-          <h1><a href="index.html"><span class="logo_colour">L</span>o<span class="logo_colour">R</span>a</a></h1>
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html"><span class="logo_colour">T</span>R<span class="logo_colour">I</span><span class="logo_colour">L</span><span class="logo_colour">L</span></a></h1>
         </div>
         <div id="logoPadding">
-        <h2>Long Range</h2>
+        <h2>Trasnparent Interconection of Lots of Links</h2>
         </div>
       </div>
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+
           <li><a href="index.html">Home</a></li>
           <li><a href="introducao.html">Introdução</a></li>
-          <li><a href="arquitetura.html">Arquitetura</a></li>
-          <li><a href="dispositivos.html">Dispositivos Finais</a></li>
-          <li><a href="modulacao.html">Modulação LoRa</a></li>
-          <li><a href="outras_tecno.html">Outras Tecnologias</a></li>
-          <li><a href="conclusoes.html">Conclusões</a></li>
-          <li><a href="bibliografia.html">Bibliografia</a></li>
+          <li><a href="ethernet_bridges.html">Ethernet e Bridges</a></li>
+          <li><a href="trillRBridges.html">TRILL - Rbridges</a></li>
+          <li ><a href="conclusoes.html">Conclusões</a></li>
           <li class="selected"><a href="perguntas.html">Perguntas</a></li>
-
+          <li><a href="bibliografia.html">Bibliografia</a></li>
         </ul>
       </div>
     </div>
@@ -41,8 +40,8 @@
       <div id="content">
         <!-- insert the page content here -->
         <h2>Perguntas</h2>
-        <p>1) Cite uma forma com que a tecnologia LoRa se adequa à capacidade energética de um dispositivo</p>
-        <p class="resposta">R: Classes de dispositivos, Adaptive Data Rate</p>
+        <p>1) Como é feito o roteamento de quadros sem a implementação do protocolo TRILL?</p>
+        <p class="resposta">R: A bridge, ao receber um quadro destinado a um endereço nunca antes visto, faz um broadcast e espera pela resposta, anotando a placa de entrada pela qual a resposta chegou. Em um segundo momento, quando </p>
         <br>
         <p>2) Em que frequência de rádio a tecnologia LoRa opera?</p>
         <p class="resposta">ISM não licenciada</p>
