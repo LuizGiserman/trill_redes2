@@ -56,12 +56,15 @@
           <li>Permite Equal cost multi path.</li>
         </ul>
 
-        <p>Para garantir a coexistência entre bridges e Rbridges, o protocolo ethernet é encapsulado por um cabeçalho TRILL que, por sua vez, é encapsulado por um outro cabeçalho ethernet. Esse último encapsulamento faz com que o quadro pareça um pacote comum para uma bridge comum. Uma Rbridge conhece esse encapsulamente e é capaz de desfazê-lo, extrair as informações do cabeçalho TRILL, atualizar o valor de hop count e reencapsulá-lo com um cabeçalho ethernet.</p>
-
+        <p>Para garantir a coexistência entre bridges e Rbridges, o protocolo ethernet é encapsulado por um cabeçalho TRILL que, por sua vez, é encapsulado por um outro cabeçalho ethernet. Esse último encapsulamento faz com que o quadro pareça um pacote comum para uma bridge comum. Uma Rbridge conhece esse encapsulamente e é capaz de desfazê-lo, extrair as informações do cabeçalho TRILL, atualizar o valor de hop count e reencapsulá-lo com um cabeçalho ethernet. Ainda, quando for necessário o encaminhamento de um quadro por uma bridge intermediária entre RBridges, o campo de destino do cabeçalho Ethernet externo será preenchido com o próximo salto - o MAC da RBridge depois da bridge - evitando que a bridge inunde a rede.
         <div class="imageCaption"><img src="imgs/trillHeader.png" class="imagePadding"><br>Figura 3: Cabeçalho TRILL[2].</div>
         <br>
 
+        <h4>Identificação das RBridges</h4>
 
+        <h4>RBridge Designada</h4>
+
+        <p>Endereço de origem e de destino final mesmo.</p>
 
 
         <p>Atualmente os fabricantes desenvolvem suas próprias versões do protocolo Trill como o <a href="https://www.cisco.com/c/dam/global/en_ca/assets/plus/assets/pdf/FabricPath-RFULLER.pdf">FabricPath da cisco</a></p>
