@@ -27,11 +27,11 @@
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
 
           <li><a href="index.html">Home</a></li>
-          <li><a href="introducao.html">Introdução</a></li>
+          <li ><a href="introducao.html">Introdução</a></li>
           <li><a href="ethernet_bridges.html">Ethernet e Bridges</a></li>
-          <li><a href="trillRBridges.html">TRILL - Rbridges</a></li>
+          <li><a href="trillISIS.html">TRILL - IS-IS</a></li>
           <li><a href="trillRBridges.html">TRILL - RBridges </a></li>
-          <li class="selected"><a href="conclusoes.html">Conclusões</a></li>
+          <li  class="selected" ><a href="conclusoes.html">Conclusões</a></li>
           <li><a href="perguntas.html">Perguntas</a></li>
           <li><a href="bibliografia.html">Bibliografia</a></li>
         </ul>
@@ -41,7 +41,16 @@
       <div id="content">
         <!-- insert the page content here -->
         <h2>Conclusões Finais</h2>
-
+        <p>Como vimos, a Internet está em constante desenvolvimento. O protocolo Transparent Interconnection of Lots of Links (TRILL) foi proposto para remodelar a camada de enlace da Internet e garantir a adaptação dos usuários a esse novo conjunto de padrões.</p>
+        <p>Esse protocolo tem como objetivo corrigir os defeitos do Spanning Tree Protocol, que é muito menos eficiente se comparado ao TRILL.</p>
+        <p>A prevenção contra loops e o roteamento de quadros foram propostos e implementados de forma concisa, assim como outras funções explicadas nesse trabalho:</p>
+        <ul>
+            <li>Rotas ótimas para envio unicast</li>
+            <li>Cache de respostas ARP</li>
+            <li>Coexistência com bridges antigas</li>
+            <li>Suporta qualquer protocolo de rede</li>
+        </ul>
+        <p>Espera-se que, ao longo dos anos, o número de redes que implementam a tecnologia TRILL e as RBridges cresça, desenvolvendo a Internet como um todo e se aproximando, cada vez mais, de uma otimalidade para todos.</p>
      </div>
     </div>
     <div id="footer">
