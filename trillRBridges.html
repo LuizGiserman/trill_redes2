@@ -61,13 +61,13 @@
         <br>
 
         <!-- identificacao das rbridges -->
-        <h4>Identificação das RBridges</h4></br>
+        <h4>Identificação das RBridges</h4><br>
         <p>Para que as RBridges identifiquem umas as outras, foi definido um identificador de 2 bytes para cada RBridge. Essa identificação, normalmente, é escolhida de forma aleatória. Se uma RBridge detecta uma colisão de endereços, o dispositivo de maior prioridade permanece com a identificação enquanto a outra é obrigada a escolher uma nova.</p>
         <p>Ainda, se o administrador desejar, é possível configurar esse identificador de forma manual. Nesses casos, a RBridge tem prioridade sobre as outras que tiveram seu endereço configurado automaticamente.</p>
         <p>Por ter um identificador de apenas dois bytes, o cabeçalho TRILL, que conta com RBridges de origem e de destino, fica reduzido, otimizando o protocolo.
 
         <!-- Aprendendo a localização de dispositivos finais -->
-        <h4>Aprendendo a Localização de Dispositivos Finais</h4></br>
+        <h4>Aprendendo a Localização de Dispositivos Finais</h4><br>
         <p>Por padrão, as RBridges aprendem a localização de dispositivos finais a partir da leitura dos quadros passantes. Fica opcional aprender por mensagens de anúncios de outras RBridges. O aprendizado por mensagens de anúncio, se escolhido, tem prioridade sobre o aprendizado por quadros passantes. Isso porque as RBridges oferecem um mecanismo mais robusto sabendo quando dispositivos finais estão ligados a ela do que aprendendo da forma padrão [2].</p>
         <p>Mesmo sendo uma opção mais confiável, aprender por mensagens de anúncios foi definido como opcional pois, em certos casos, deixava a tabela de roteamento das RBridges com muita informação sem necessidade.</p>
 
@@ -75,21 +75,21 @@
         <p><b>Para entender os problemas de loops que ainda são possíveis com o que vimos de RBridges e do protocolo TRILL até agora, é necessário ter um conhecimento sobre Virtual Local Area Networks (VLANs)</b></p>
 
         <!-- VLAN -->
-        <h4>Virtual Local Area Network (VLAN) </h4>
+	<h4>Virtual Local Area Network (VLAN) </h4><br>
         <p>VLAN é uma partição lógica de um enlace físico. Com isso, duas - ou mais - sub-redes diferentes podem estar hospedadas em um mesmo enlace físico. Para que isso funcione, foi adicionado uma tag especificando à VLAN de destino em cada quadro da camada de enlace. As bridges da topologia são configuradas para enviar quadros com destino VLANx apenas para dispositivos pertencentes a esse mesmo VLANx. </p>
 
         <div class="imageCaption"><img src="imgs/vlanTRILL.png" class="imagePadding"><br>Figura 4: Ilustração duas VLANs em um mesmo enlace.</div>
         <br>
 
         <!-- RBridge Designada -->
-        <h4>RBridge Designada</h4></br>
+        <h4>RBridge Designada</h4><br>
         <p>Para cada enlace, é mandatório que só uma RBridge seja responsável por encapsular/decapsular o cabeçalho TRILL, a RBridge designada. Em um ambiente com duas RBridges designadas que não sabem da existência da outra, se um dispositivo envia uma mensagem do tipo multicast/broadcast, a primeira RBrdige designada pode encapsular o pacote e encaminhá-lo, até que chegue na segunda RBRidge designada, que irá desencapsulá-lo e encaminhá-lo. Esse desencapsulamento faz com que o cabeçalho TRILL seja perdido, desprotejando o quadro contra loops - sem Hop Count.</p>
         <p>O protocolo TRILL utiliza a função do protocolo IS-IS de roteador designado para escolher a RBridge designada. A descoberta de uma RBridge e de uma RBridge designada é por meio de mensagens IS-IS do tipo "Hello". No entanto, como as RBridges também podem ser configuradas para bloquear mensagens destinadas a VLANs específicos, uma mensagem de "Hello" de uma RBridge designada do VLANa pode não chegar ao VLANb, o que indica que um RBridge desse VLAN deve se tornar designada. Como VLANa e VLANb estão no mesmo enlace, o sistema se encontra na situação de loop descrevido no último parágrafo. </p>
         <p>Para solucionar esse problema, uma RBridge designada, entre todas as RBRidges de um enlace, é predefinida e envia mensagens de "Hello" com tags para todas as possíveis VLANs. Dessa forma, há a garantia de que todas as VLANs irão ouvir essa mensagem e considerar a RBridge que as enviou como "Designated VLAN" RBridge.</p>
         <p>Com a finalidade de distribuir o tráfego, a RBridge designada pode apontar outra RBridges como designada para uma determinada faixa de VLANs. Desde que não haja mais de uma RBridge designada para cada faixa, a topologia deve funcionar de forma segura.</p>
 
         <!-- ARP -->
-        <h4>Mensagens Address Resolution Protocol (ARP) nas RBridges</h4>
+	<h4>Mensagens Address Resolution Protocol (ARP) nas RBridges</h4><br>
         <p>Para evitar a inundação repetitiva em solicitações ARP, as RBridges guardam um cache temporário [1]. Supondo que um dispositivo S, localizado no enlace 1, faça uma solicitação ARP para o dispositivo D, que está no enlace 2. A RBridge desginada (DRB) do enlace 1, DRB1, troca o endereço fonte dessa solicitação ARP para o seu próprio, de modo a receber a resposta no futuro, e então, encaminha o quadro para a DRB do enlace 2, a DRB2. Essa, por sua vez, troca o endereço fonte, da mesma forma, para o seu próprio, e inunda o enlace, recebendo, em seguida, a resposta ARP de D. No final desse processo, DRB1 e DRB2 tem a informação igual a uma mensagem de resposta ARP do dispositivo D. Se um dispositivo do L do enlace 1, por exemplo, fizer uma solicitação ARP para D, a DRB1 prontamente o responde, sem a necessidade de passar por esse processo novamente, tornando a descoberta de endereços de nível dois mais eficiente [1]. </p>
 
         <div class="imageCaption"><img src="imgs/arpTRILL.png" class="imagePadding"><br>Figura 5: Ilustração do exemplo utilizado para explicar o caminho das mensagens ARP no TRILL.</div>

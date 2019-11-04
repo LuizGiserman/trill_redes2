@@ -42,7 +42,7 @@
       <div id="content">
         
 	<h2> Transparent Interconection of Lots of Links (TRILL) </h2>
-        <p> Para a implementação do protocolo TRILL, Radia definiu que cada bridge deve guardar o estado do enlace da topologia da camada de enlace. Dessa forma, é possível que a bridge aplique o algoritmo de Dijkstra, assim como no OSPF - protocolo utilizado na camada de rede - , determinando a árvore geradora mínima que um quadro deve percorrer. </p>
+        <p> Para a implementação do protocolo TRILL, Radia definiu que cada bridge deve guardar o estado do enlace da topologia da camada de enlace. Dessa forma, é possível que a bridge aplique o algoritmo de Dijkstra, assim como no OSPF, determinando a árvore geradora mínima que um quadro deve percorrer. </p>
 
         <p> Para obter essa relação de estados do enlace, é necessário utilizar um protocolo de roteamento na camada de enlace. Escolher o protocolo OSPF tornaria necessário associar um endereço IP para cada bridge, o que não é muitro atraente do ponto de vista da rede, já que os endereços de IPv4 já estão esgotados. Tendo isso em mente, a pesquisadora escolheu utilizar o protocolo IS-IS, que funciona em conjunto com qualquer outro protocolo, o que possibilita o roteamento por meio de endereços MAC.</p>
 
@@ -64,7 +64,6 @@
           background-color: #dddddd;
         }
         </style>
-        </head>
 
         <h4> Intermediary System - Intermediary System (IS - IS)</h4>
 
@@ -83,7 +82,7 @@
 
         <div class="imageCaption"><img src="imgs/isisheader.png" class="imagePadding"><br>Cabeçalho do pacote IS-IS[ Extraído de <a href=https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html>itcertnotes.com</a> IS-IS Protocol Data Units (PDUs), Acessado em 3/11/2019]</div><br>
 
-
+	<br>
         <p>O IS-IS contém 4 tipos de mensagem:</p>
 
         <p><b>Pacote Hello</b>: Trocado periódicamente entre roteadores vizinhos para verificar se estão conectados.
@@ -91,10 +90,10 @@
         </p>
         <p><b>Link State PDU (LSP)</b>:   Implementa TLV's contendo as informações das adjacencias de um roteador. Este é o pacote distribuido durante a inundação. É composto por um número de sequência para validar se a informação é nova, além de ser utilizado como proteção anti-replay.Carrega também informação sobre o tipo do roteador (nível 1 ou 2).</p>
         <p><b>Complete Sequence Number Packet PDU (CSNP)</b>:O roteador designado, periodicamente envia este quadro em broadcast. Esse quadro contem em uma de suas TLVs, todas as entradasdas vizinhanças do roteador designado presentes no banco de dados de estado de enlace daquele roteador. </p>
-        <p><b>Partial Sequence Numbers PDU (PSNP)</b>:  Ao invés de enviar todas as entradas de um roteador, este qudro envia apenas um ou pouscos LSPs. Dessa forma, é normalmente utilizado para realizar ackolegment ou então para soclitiar a informação de alguma entrada, sendo portanto um meio de tratamento de erros. </p>
+        <p><b>Partial Sequence Numbers PDU (PSNP)</b>:  Ao invés de enviar todas as entradas de um roteador, este qudro envia apenas um ou pouscos LSPs. Dessa forma, é normalmente utilizado para apontar o recebimento de uma entrada ou então para soclitiar a informação de alguma entrada, sendo assim, um meio de tratamento de erros. </p>
         
         <h4>Eleição do roteador designado</h4>
-        <p>A Eleição do roteador Designado ocorre por meio das trocas de pacotes hello. A ideia por traz da escolha de um rotedor designado, é reduzir o desperdício de banda em uma vizinhança de roteadores, durante a fase de inundação. Semelhante ao OSPF, um roteador da adjacência é eleito para realizar o transmissão de pacotes durante o Flood, reduzindo o total de envios de n**2 para n. O protocolo TRILL aproveita a existência do roteador designado para garantir que há apenas uma rbridge operando por vlan, evitando assim os loops por encapsulamento/desencapsulamento.</p>
+	<p>A Eleição do roteador Designado ocorre por meio das trocas de pacotes hello. A ideia por traz da escolha de um rotedor designado, é reduzir o desperdício de banda em uma vizinhança de roteadores, durante a fase de inundação. Semelhante ao OSPF, um roteador da adjacência é eleito para realizar o transmissão de pacotes durante o Flood, reduzindo o total de envios de <b>n² para n</b>. O protocolo TRILL aproveita a existência do roteador designado para garantir que há apenas uma rbridge operando por vlan, evitando assim os loops por encapsulamento / desencapsulamento.</p>
 
 
 
