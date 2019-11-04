@@ -42,8 +42,42 @@
         <!-- insert the page content here -->
         <h2>Perguntas</h2>
         <p>1) Como é feito o roteamento de quadros sem a implementação do protocolo TRILL?</p>
-        <p class="resposta">R: A bridge, ao receber um quadro destinado a um endereço nunca antes visto, faz um broadcast e espera pela resposta, anotando a placa de entrada pela qual a resposta chegou. Em um segundo momento, quando </p>
+        <p class="resposta">R: A bridge, ao receber um quadro destinado a um endereço nunca antes visto, faz um broadcast e espera pela resposta, anotando a placa de entrada pela qual a resposta chegou. Em um segundo momento, quando ela conhece a interface de destino e é uma interface diferente da de origem, a bridge replica o  quadro naquela porta.  </p>
         <br>
+
+
+
+	<p>2) Cite um ponto negativo do Spanning Tree Protocol ( protocolo da camada 2 que opera nas bridges)</p>
+        <p class="resposta">R: Inutilização de enlaces (problemas de custo). Sobreutilização de enlaces - concentração do tráfego. Caminhos sub-ótimos. </p>
+        <br>
+
+
+
+        <p>3) O que faz uma bridge de ethernet? Qual a diferença de uma Bridge para uma Rbridge?</p>
+        <p class="resposta">R: Uma bridge é responsável por conectar duas LANs a nível de link. uma RBridge além de executar a função de uma bridge normal, possui a capacidade de rodar um protocolo de estado de enlace, além de encaminhar seus pacotes com um cabeçalho de  hop count.</p>
+        <br>
+
+
+
+        <p>4)    Tendo em vista o tamanho das tabelas de roteamento, cite uma vantagem do roteamento em cima de endereços IP ao invés do roteamento por MAC.</p>
+        <p class="resposta">R: Os endereços IPs carregam informação da sua localização na topologia, enquanto os endereços MAC são gerados pelo fabricante. Pelo fato do IP permitir agregação, entradas do banco de dados que levam à uma mesma faixa de IP podem ser unidas em uma só. 
+	<br>Ex: eth0=146.164.1.0/17 eth0=146.164.0.0/17 -&gt; eth0=146.164.0.0/16
+</p>
+        <br>
+
+
+
+
+        <p>5)    Tendo em vista o número de enlaces, por que não é possível utilizar apenas ethernet para uma rede muito grande, como a internet toda? Por que roteamento é necessário?</p>
+        <p class="resposta">R: No protocolo Ethernet, cada estação está diretamente conectada com seus vizinhos. Portanto o número de links necessários é n² , o que tornaria impossível a implementação de tantas conexões, ou então à sobrecarga da topologia da LAN (barramento por exemplo). </p>
+        <br>
+
+
+
+
+
+
+
 
         <!-- <br> -->
         <br>
