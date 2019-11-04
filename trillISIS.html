@@ -78,21 +78,27 @@
 
         <p>Cada um desses níveis possui um banco de dados próprio. Um roteador pode realizar roteamento nos dois níveis, sendo assim designado roteador de nível 1-2. Normalmente estes roteadores são roteadores de borda da rede.</p><br>
 
-        <div class="imageCaption"><img src="imgs/isislvl.png" class="imagePadding"><br>Topologia de uma rede IS-IS[addRef]</div><br>
+        <div class="imageCaption"><img src="imgs/isislvl.png" class="imagePadding"><br>Topologia de uma rede IS-IS [9]</div><br>
 
         <p>As métricas do IS-IS são arbitrátrias e definidas pelo usuário, com um valor de 10 como padrão.
         Além disso, embora o IS-IS possa suportar IP, ele foi construido para realizar roteamento em camada 2, efetivamente roteando para endereços MAC.</p>
 
-        <div class="imageCaption"><img src="imgs/isisheader.png" class="imagePadding"><br>Cabeçalho do pacote IS-IS[addRef]</div><br>
+        <div class="imageCaption"><img src="imgs/isisheader.png" class="imagePadding"><br>Cabeçalho do pacote IS-IS[10]</div><br>
 
-        <a href="https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html ">Descrever os campos</a>
+        <!--<a href="https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html ">Descrever os campos</a>-->
 
         <p>O IS-IS contém 4 tipos de mensagem:</p>
 
-        <p><b>Pacote Hello</b>: Trocado periódicamente entre roteadores vizinhos para verificar se estão conectados.</p>
-        <p><b>LSP (Link State PDU)</b>:   Implementa TLV's contendo as informações de roteamento. Este é o pacote distribuido durante a inundação.</p>
-        <p><b>CSNP</b>: ? </p><!--his packet will be sent only by the DIS. By default for every 10 seconds, CSNP packet will be transmitted by DIS. This will contain the list of LSP ID's along with sequence number and checksum.-->
-        <p><b>PSNP</b>:  Utilizado para tratamento de erros </p>
+        <p><b>Pacote Hello</b>: Trocado periódicamente entre roteadores vizinhos para verificar se estão conectados.
+        Nesse quadro, também é enviado informações como o tempo entre os hellos e o tempo de espera para considerar que um roteador esta morto. É também no quadro de Hello que é feita a seleção do roteador designado.
+        </p>
+        <p><b>Link State PDU (LSP)</b>:   Implementa TLV's contendo as informações de roteamento. Este é o pacote distribuido durante a inundação. É composto por um número de sequência para validar se a informação é nova, além de ser utilizado como proteção anti-replay.</p>
+        <p><b>Complete Sequence Number Packet PDU (CSNP)</b>: ? </p><!--his packet will be sent only by the DIS. By default for every 10 seconds, CSNP packet will be transmitted by DIS. This will contain the list of LSP ID's along with sequence number and checksum.-->
+        <p><b>Partial Sequence Numbers PDU (PSNP)</b>:  Utilizado para tratamento de erros. Quando um roteador encontra uma discrepância em seu banco de dados, essa mensagem é enviada. </p>
+        <p>Ta</p>
+        
+        <p>A Eleição do roteador Designado ocorre por meio das trocas de pacotes hello. A ideia por traz da escolha de um rotedor designado, é reduzir o desperdício de banda em uma vizinhança de roteadores, durante a fase de inundação. Semelhante ao OSPF, um roteador da adjacência é eleito para realizar o transmissão de pacotes durante o Flood, reduzindo o total de envios de n**2 para n. O protocolo TRILL aproveita a existência do roteador designado para garantir que há apenas uma rbridge operando por vlan, evitando assim os loops por encapsulamento/desencapsulamento.</p>>
+
         <!-- wikipedia  https://www.itcertnotes.com/2012/03/is-is-protocol-data-units-pdus.html
         Hello Packet: The IS-IS hello packets needs to be exchanged periodically between 2 routers to establish adjacency. Based on the negotiation, one of them will be selected as DIS (Designated IS). This hello packet will be sent separately for Level-1 or Level-2.
 
@@ -103,8 +109,8 @@
 
         PSNP: If the router which receives CSNP packet finds some discrepancy in its own database, it will send an PSNP request asking the DIS to send specific LSP back to it.
         -->
-
-        <p>A existência de um campo TLV permite  que sejam adicionados novos campos de tamanhos variados, facilitando a expansão e a flexibilidade do protocolo. Esse foi um dos motivos do  IS-IS ter sido escolhido para a implementação do TRILL</p>
+        <h4>TLV</h4>
+        <p>É uma tupla Tipo-Tamanho-Valor. É utilizado no protocolo de roteamento IS-IS.A existência de um campo TLV permite  que sejam adicionados novos campos de tamanhos variados. Além disso, permite que novas opções, caso não sejam suportadas pelo dispositivo, sejam igonaradas, passando para o campo seguinte, facilitando a expansão e a flexibilidade do protocolo. Esse foi um dos motivos do  IS-IS ter sido escolhido para a implementação do TRILL</p>
 
         <h4>Diferenças e semelhanças entre OSPF e IS-IS</h4>
 
