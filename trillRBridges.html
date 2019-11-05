@@ -53,7 +53,7 @@
           <li>Têm a capacidade de coexistir com brdiges antigas, de modo a garantir uma atualização para a nova tecnologia de forma gradual.</li>
           <li>Comuta quadros utilizando o menor caminho entre a origem e o destino, mantendo sempre o estado dos enlaces.</li>
           <li>Funciona com qualquer protocolo da camada 3.</li>
-          <li>Permite Equal cost multi path.</li>
+          <li>Permite Equal Cost Multi Path.</li>
         </ul>
 
         <p>Para garantir a coexistência entre bridges e Rbridges, o protocolo ethernet é encapsulado por um cabeçalho TRILL que, por sua vez, é encapsulado por um outro cabeçalho ethernet. Esse último encapsulamento faz com que o quadro pareça um pacote comum para uma bridge comum. Uma Rbridge conhece esse encapsulamente e é capaz de desfazê-lo, extrair as informações do cabeçalho TRILL, atualizar o valor de hop count e reencapsulá-lo com um cabeçalho ethernet. Ainda, quando for necessário o encaminhamento de um quadro por uma bridge intermediária entre RBridges, o campo de destino do cabeçalho Ethernet externo será preenchido com o próximo salto - o MAC da RBridge depois da bridge - evitando que a bridge inunde a     rede.
