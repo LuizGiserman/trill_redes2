@@ -235,7 +235,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
 
 #footer
 { width: 900px;
-  font: normal 100% 'lucida sans unicode', arial, sans-serif;
+  font: normal 80% 'lucida sans unicode', arial, sans-serif;
   height: 100px;
   padding: 24px 0 5px 0;
   text-align: center;
